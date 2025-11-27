@@ -3,229 +3,233 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>thitruongtaisanmahoat</title>
+  <title>Thị trường tài sản mã hoá</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Font & colors */
     :root{
-      --primary: #2D8CDB;
-      --bg: #ffffff;
-      --text: #0b2540;
-      --card-shadow: 0 6px 20px rgba(45,140,219,0.08);
-      font-family: Georgia, 'Times New Roman', serif;
+      --primary:#2D8CDB;
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --maxw:1000px;
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.6}
+    .container{max-width:var(--maxw);margin:28px auto;padding:0 16px}
 
-    html,body{height:100%;margin:0;background:var(--bg);color:var(--text)}
-
-    /* Page layout */
-    .site-header{
-      display:flex;align-items:center;gap:16px;padding:14px 24px;border-bottom:1px solid rgba(13,40,70,0.05);
-      position:sticky;top:0;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));backdrop-filter: blur(4px);z-index:50;
-    }
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:56px;height:56px;object-fit:cover;border-radius:8px;border:2px solid rgba(45,140,219,0.08)}
-    .site-title{font-size:18px;text-transform:none;color:var(--primary);font-weight:700}
+    .brand img{width:56px;height:56px;object-fit:cover;border-radius:8px}
+    .site-title{font-weight:700;color:var(--primary);font-size:18px}
+    nav{display:flex;gap:8px}
+    .nav-link{background:transparent;border-radius:8px;padding:8px 12px;text-decoration:none;color:#0f172a;font-weight:600}
+    .nav-link:hover{background:rgba(45,140,219,0.08)}
+    .nav-link.active{background:var(--primary);color:#fff}
 
-    nav.main-nav{margin-left:auto}
-    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:8px}
-    nav a{
-      display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;color:var(--text);font-weight:600;transition:all .18s ease;
-    }
-    nav a:hover, nav a.active{
-      background:rgba(45,140,219,0.12);color:var(--primary);transform:translateY(-2px);
-      box-shadow:0 6px 18px rgba(45,140,219,0.08);
-    }
-
-    /* Main card */
-    main{display:flex;justify-content:center;padding:40px 20px 80px}
-    .card{max-width:980px;width:100%;background:#fff;border-radius:14px;padding:28px 32px;box-shadow:var(--card-shadow);border:1px solid rgba(13,40,70,0.03)}
+    /* Card */
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);padding:22px;margin-top:18px}
     h1,h2{margin:0 0 12px 0}
-    p{line-height:1.6;margin:10px 0}
+    h1{font-size:22px;color:var(--primary)}
+    h2{font-size:18px}
+    p{margin:0 0 12px}
+    ul{margin:0 0 12px 20px}
 
-    /* Section styling */
-    section{display:none}
-    section.active{display:block}
-
-    .meta{font-size:13px;color:#486b8f;margin-bottom:14px}
-    .list{margin:12px 0 18px 20px}
-    .highlight{color:var(--primary);font-weight:700}
+    /* Footer */
+    footer{margin:28px 0;padding:16px 0;text-align:center;color:var(--muted);font-size:14px}
 
     /* Responsive */
     @media (max-width:720px){
-      .brand img{width:46px;height:46px}
+      .brand img{width:44px;height:44px}
       .site-title{font-size:16px}
-      .card{padding:20px}
-      nav ul{gap:6px}
-      nav a{padding:8px 10px;font-size:14px}
+      nav{gap:4px}
+      .nav-link{padding:8px}
     }
 
-    /* Footer */
-    .site-footer{margin-top:20px;padding-top:18px;border-top:1px solid rgba(13,40,70,0.04);font-size:13px;color:#5b778f}
+    /* Simple page transitions */
+    .page{display:none}
+    .page.active{display:block}
 
-    /* subtle anchor link focus */
-    a:focus{outline:3px solid rgba(45,140,219,0.18);outline-offset:3px}
+    /* Small helper */
+    .small{font-size:14px;color:var(--muted)}
+    .lead{font-weight:500;color:#111827}
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <img src="https://url-shortener.me/8ZL4" alt="Logo thitruongtaisanmahoat" />
-      <div>
-        <div class="site-title">thitruongtaisanmahoat</div>
-        <div style="font-size:12px;color:#56799b">Thị trường tài sản mã hóa — Việt Nam</div>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="https://url-shortener.me/8ZL4" alt="Logo">
+        <div>
+          <div class="site-title">Thị trường tài sản mã hoá</div>
+          <div class="small">Thông tin — Phân tích — Triển vọng</div>
+        </div>
       </div>
-    </div>
+      <nav aria-label="Main navigation">
+        <a class="nav-link active" href="#home" data-target="home">Trang chủ</a>
+        <a class="nav-link" href="#thuctrang" data-target="thuctrang">Thực trạng</a>
+        <a class="nav-link" href="#phaply" data-target="phaply">Bước tiến pháp lý</a>
+        <a class="nav-link" href="#cohoi" data-target="cohoi">Cơ hội & Thách thức</a>
+        <a class="nav-link" href="#trienvong" data-target="trienvong">Triển vọng tương lai</a>
+      </nav>
+    </header>
 
-    <nav class="main-nav" aria-label="Điều hướng chính">
-      <ul>
-        <li><a href="#home" data-target="home" class="nav-link active">Trang chủ</a></li>
-        <li><a href="#thuctrang" data-target="thuctrang" class="nav-link">Thực trạng</a></li>
-        <li><a href="#phaply" data-target="phaply" class="nav-link">Bước tiến pháp lý</a></li>
-        <li><a href="#cohoithachthuc" data-target="cohoithachthuc" class="nav-link">Cơ hội & Thách thức</a></li>
-        <li><a href="#trienvong" data-target="trienvong" class="nav-link">Triển vọng tương lai</a></li>
-      </ul>
-    </nav>
-  </header>
+    <main>
+      <!-- HOME -->
+      <section id="home" class="page active card" role="region" aria-label="Trang chủ">
+<div style="width:100%;height:315px;margin-bottom:18px;border-radius:12px;overflow:hidden;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/evn_dD074mY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
-  <main>
-    <article class="card" role="main">
-
-      <section id="home" class="active">
         <h1>Thị trường tài sản mã hóa tại Việt Nam</h1>
-        <div class="meta">Giới thiệu chung</div>
-        <p>Nếu thế kỷ 20 là thời kỳ vàng son của tiền giấy và ngân hàng truyền thống, thì thế kỷ 21 chính là kỷ nguyên của tài chính số – nơi mà giá trị không còn nằm trong những tờ tiền vật lý, mà được thể hiện qua các dòng mã hóa, các token và blockchain.</p>
+        <p class="lead">Nếu thế kỷ 20 là thời kỳ vàng son của tiền giấy và ngân hàng truyền thống, thì thế kỷ 21 chính là kỷ nguyên của tài chính số – nơi mà giá trị không còn nằm trong những tờ tiền vật lý, mà được thể hiện qua các dòng mã hóa, các token và blockchain.</p>
         <p>Là những sinh viên đang bước vào thế giới tài chính, chúng ta cần hiểu rõ: tài sản mã hóa không chỉ là công nghệ, mà còn là tương lai của nền kinh tế toàn cầu – và Việt Nam đang dần bước vào hành trình đó.</p>
 
         <h2>Khái niệm</h2>
-        <p><strong>Tài sản mã hóa</strong>, hay còn gọi là <em>Digital Assets</em>, là những tài sản có giá trị được biểu diễn bằng dữ liệu kỹ thuật số và lưu trữ trên công nghệ blockchain.</p>
+        <p>Tài sản mã hóa, hay còn gọi là <em>Digital Assets</em>, là những tài sản có giá trị được biểu diễn bằng dữ liệu kỹ thuật số và lưu trữ trên công nghệ blockchain.</p>
         <p>Nếu tiền giấy được ngân hàng trung ương phát hành, thì tài sản mã hóa được “phát hành” bởi công nghệ và được xác thực bởi cộng đồng mạng lưới blockchain.</p>
 
         <h2>Các dạng phổ biến</h2>
-        <ul class="list">
-          <li>Tiền mã hóa: Bitcoin, Ethereum.</li>
-          <li>Token hóa tài sản thực: bất động sản, trái phiếu.</li>
-          <li>NFT: đại diện cho tài sản kỹ thuật số độc nhất.</li>
-          <li>Stablecoin: gắn với giá trị ổn định như USD hoặc vàng.</li>
+        <ul>
+          <li>Tiền mã hóa như Bitcoin, Ethereum.</li>
+          <li>Token hóa tài sản thực như bất động sản hoặc trái phiếu.</li>
+          <li>NFT – đại diện cho tài sản kỹ thuật số độc nhất.</li>
+          <li>Stablecoin – được gắn với giá trị ổn định như USD hoặc vàng.</li>
         </ul>
 
-        <h2>Ví dụ tiêu biểu</h2>
-        <p><strong>Bitcoin:</strong> Tiền mã hóa đầu tiên và phổ biến nhất.</p>
-        <p><strong>Ethereum:</strong> Nền tảng blockchain cho phép phát hành nhiều loại tài sản mã hóa.</p>
-        <p><strong>NFT:</strong> Token đại diện cho quyền sở hữu một tài sản số hoặc vật lý duy nhất.</p>
+        <h2>Ví dụ</h2>
+        <ul>
+          <li><strong>Bitcoin:</strong> Tiền mã hóa đầu tiên và phổ biến nhất.</li>
+          <li><strong>Ethereum:</strong> Một nền tảng blockchain tạo ra nhiều loại tài sản mã hóa khác nhau.</li>
+          <li><strong>NFT (Non-Fungible Token):</strong> Token đại diện cho quyền sở hữu một tài sản số hoặc vật lý duy nhất.</li>
+        </ul>
 
-        <p class="site-footer">Tài sản mã hóa mang lại sự minh bạch, tốc độ, và khả năng giao dịch toàn cầu – những điều mà hệ thống tài chính truyền thống đang cố gắng đạt tới.</p>
+        <p>Tài sản mã hóa mang lại sự minh bạch, tốc độ, và khả năng giao dịch toàn cầu – những điều mà hệ thống tài chính truyền thống đang cố gắng đạt tới.</p>
       </section>
 
-      <section id="thuctrang">
+      <!-- THỰC TRẠNG -->
+      <section id="thuctrang" class="page card" role="region" aria-label="Thực trạng tại Việt Nam">
         <h1>Thực trạng tại Việt Nam</h1>
-        <div class="meta">Tổng quan hiện nay</div>
-        <p>Theo nhiều báo cáo quốc tế, Việt Nam nằm trong top các quốc gia có tỷ lệ sử dụng crypto cao; ước tính có khoảng 17–20 triệu người dùng (tương đương ~17% dân số).</p>
-        <p>Điều này cho thấy sự tiếp cận nhanh chóng và sâu rộng của người Việt với tài sản số, đặc biệt trong giới trẻ và giới công nghệ.</p>
+        <p>Theo các báo cáo quốc tế như Chainalysis hay Statista, Việt Nam thường xuyên nằm trong top 5 quốc gia có tỷ lệ người sử dụng crypto cao nhất thế giới, ước tính có khoảng 17-20 triệu người dùng, tương đương hơn 17% dân số – rất cao so với mặt bằng thế giới.</p>
+        <p>Điều này cho thấy sự tiếp cận nhanh chóng và sâu rộng của người Việt đối với tài sản số, đặc biệt là trong giới trẻ và giới công nghệ.</p>
 
-        <h2>Vấn đề & rủi ro</h2>
-        <p>Do khung pháp lý chưa hoàn thiện trước năm 2025, Việt Nam chứng kiến nhiều vụ lừa đảo, mô hình đầu tư trá hình và dòng vốn ra nước ngoài không kiểm soát được.</p>
-        <p>Ví dụ điển hình gần đây là vụ lừa đảo liên quan đến <span class="highlight">dự án "đồng tiền số Antex"</span> — một kịch bản tiêu biểu cho việc lợi dụng danh tiếng cá nhân để huy động vốn và gây thất thoát cho nhà đầu tư.</p>
+        <h2>Sự kiện pháp lý gần đây</h2>
+        <p>Ngày 9/9/2025, Chính phủ ban hành Nghị quyết 05/2025/NQ-CP cho phép thí điểm thị trường tài sản mã hóa trong 5 năm. (xem phần Bước tiến pháp lý)</p>
+
+        <h2>Rủi ro & Lừa đảo</h2>
+        <p>Vì mãi đến năm 2025 mới có nghị quyết thí điểm, nên có rất nhiều vụ lừa đảo, mô hình đầu tư trá hình đã xảy ra trong nước, dòng vốn đầu tư bằng crypto ra nước ngoài gần như không kiểm soát được.</p>
+        <p>Ví dụ: vụ lừa đảo chiếm đoạt tài sản của ông Nguyễn Hòa Bình (Shark Bình) với dự án “đồng tiền số Antex” đã khiến nhiều người mất tiền và chịu tổn thất nặng nề.</p>
 
         <h2>Sàn giao dịch</h2>
-        <p>Phần lớn giao dịch ở Việt Nam diễn ra trên sàn quốc tế như Binance, OKX, Bybit vì chưa có sàn hợp pháp trong nước. Điều này đem lại tính thanh khoản và công nghệ, nhưng cũng đặt ra rủi ro về bảo vệ người dùng, thuế và kiểm soát vốn.</p>
+        <p>Phần lớn hoạt động giao dịch diễn ra trên các sàn quốc tế như Binance, OKX hay Bybit, do Việt Nam chưa có sàn giao dịch hợp pháp trong nước.</p>
+        <p>Những sàn này cho phép giao dịch 24/7, tiếp cận thị trường toàn cầu, nhưng cũng đặt người dùng vào rủi ro khi không được pháp luật Việt Nam bảo vệ đầy đủ.</p>
 
-        <p class="site-footer">Mấu chốt: Việt Nam cần một khung pháp lý rõ ràng để cân bằng giữa đổi mới và bảo vệ nhà đầu tư.</p>
+        <p class="small">Tổng kết: Việt Nam đang chứng kiến mức độ phổ biến cao với nhiều rủi ro pháp lý và an toàn — điều này đặt ra nhu cầu cấp bách về khung pháp lý và giám sát.</p>
       </section>
 
-      <section id="phaply">
+      <!-- BƯỚC TIẾN PHÁP LÝ -->
+      <section id="phaply" class="page card" role="region" aria-label="Bước tiến pháp lý">
         <h1>Bước tiến pháp lý</h1>
-        <div class="meta">Nghị quyết & quy định (cập nhật tới 9/9/2025)</div>
-        <p>Ngày <strong>9/9/2025</strong>, Chính phủ ban hành <strong>Nghị quyết 05/2025/NQ-CP</strong> về thí điểm thị trường tài sản mã hóa trong 5 năm — một bước tiến lịch sử cho phép thử nghiệm phát hành và giao dịch tài sản mã hóa trong khuôn khổ nhà nước.</p>
+        <p>Ngày 9/9/2025, Chính phủ Việt Nam chính thức ban hành <strong>Nghị quyết 05/2025/NQ-CP</strong> về thí điểm thị trường tài sản mã hóa trong 5 năm. Đây được xem là bước ngoặt lịch sử – lần đầu tiên Nhà nước công nhận và cho phép thử nghiệm hoạt động phát hành, giao dịch tài sản mã hóa.</p>
 
-        <h2>Nội dung chính</h2>
-        <ul class="list">
-          <li>Giao dịch phải thực hiện bằng <strong>Đồng Việt Nam (VNĐ)</strong> để kiểm soát dòng vốn.</li>
-          <li>Doanh nghiệp tham gia cần <strong>vốn điều lệ tối thiểu 10.000 tỷ đồng</strong> và là doanh nghiệp Việt Nam (tỷ lệ sở hữu tối thiểu 65% thuộc tổ chức Việt Nam).</li>
-          <li>Chỉ cho phép phát hành token <strong>gắn với tài sản thực</strong> (không phải tiền tệ hay chứng khoán).</li>
-          <li>Yêu cầu hạ tầng công nghệ an toàn đạt <strong>cấp độ 4</strong>.</li>
+        <h2>Nội dung chính của Nghị quyết 05/2025/NQ-CP</h2>
+        <ul>
+          <li>Giao dịch phải thực hiện bằng Đồng Việt Nam (VNĐ) nhằm kiểm soát dòng vốn và bảo vệ ổn định tài chính, tiền tệ quốc gia.</li>
+          <li>Doanh nghiệp tham gia cần có vốn điều lệ tối thiểu 10.000 tỷ đồng và phải là doanh nghiệp Việt Nam; tối thiểu 65% vốn thuộc tổ chức Việt Nam.</li>
+          <li>Hạ tầng công nghệ phải đạt tiêu chuẩn an toàn cấp độ 4.</li>
+          <li>Chỉ được phép phát hành token gắn với tài sản thật, không phải tiền tệ hay chứng khoán.</li>
         </ul>
 
-        <p class="site-footer">Nghị quyết mở cửa cho đổi mới nhưng đồng thời đặt ra tiêu chuẩn cao để bảo vệ ổn định tài chính.</p>
+        <p class="small">(Nguồn: Tổng hợp thông tin chính thức và bản tin chuyên ngành, 2025)</p>
       </section>
 
-      <section id="cohoithachthuc">
-        <h1>Cơ hội & Thách thức</h1>
-        <div class="meta">Cơ hội phát triển</div>
+      <!-- CƠ HỘI & THÁCH THỨC -->
+      <section id="cohoi" class="page card" role="region" aria-label="Cơ hội và thách thức">
+        <h1>Cơ hội phát triển & Thách thức</h1>
 
-        <h2>Cơ hội</h2>
-        <ul class="list">
-          <li>Hành lang pháp lý rõ ràng giúp đầu tư an toàn và minh bạch.</li>
-          <li>Thu hút vốn đầu tư quốc tế cho fintech và blockchain.</li>
-          <li>Kích thích sản phẩm tài chính mới: token hóa bất động sản, cổ phần, hóa đơn thương mại, tín chỉ carbon.</li>
-          <li>Thúc đẩy chuyển đổi số trong ngân hàng và thị trường chứng khoán.</li>
+        <h2>Cơ hội phát triển</h2>
+        <ul>
+          <li>Hợp pháp hóa thí điểm mở ra hành lang pháp lý rõ ràng, giúp đầu tư an toàn và minh bạch.</li>
+          <li>Thu hút nguồn vốn đầu tư quốc tế cho fintech, blockchain và khởi nghiệp.</li>
+          <li>Thúc đẩy ra đời các sản phẩm tài chính mới như token hóa bất động sản hay cổ phần.</li>
+          <li>Thúc đẩy chuyển đổi số trong ngân hàng, chứng khoán và doanh nghiệp.</li>
         </ul>
 
-        <h2>Thách thức & rủi ro</h2>
-        <ul class="list">
-          <li>Chưa có luật điều chỉnh đầy đủ (dự kiến có Luật mới năm 2026).</li>
-          <li>Biến động giá lớn, rủi ro mất vốn cao.</li>
-          <li>Lừa đảo, sàn ma, token rác và thiếu bảo hiểm cho người dùng.</li>
-          <li>Rủi ro an ninh mạng: hack sàn, mất khóa cá nhân.</li>
-          <li>Rủi ro chính sách: thay đổi quy định đột ngột có thể gây ảnh hưởng mạnh.</li>
+        <h2>Thách thức & Rủi ro</h2>
+        <h3>Thách thức pháp lý</h3>
+        <ul>
+          <li>Chưa có luật điều chỉnh đầy đủ (dự kiến Luật có hiệu lực năm 2026).</li>
+          <li>Crypto chưa được công nhận là phương tiện thanh toán hợp pháp.</li>
+          <li>Tranh chấp khó giải quyết do thiếu cơ chế pháp lý rõ ràng.</li>
         </ul>
 
-        <p class="site-footer">Mỗi nhà đầu tư, đặc biệt là sinh viên, cần trang bị kiến thức để phân tích và quản trị rủi ro.</p>
+        <h3>Rủi ro cho nhà đầu tư</h3>
+        <ul>
+          <li>Biến động giá lớn, khả năng mất trắng.</li>
+          <li>Lừa đảo phổ biến: dự án đa cấp, token rác, sàn ma.</li>
+          <li>Thiếu kiến thức và thông tin dẫn đến đầu tư theo đám đông.</li>
+        </ul>
+
+        <h3>Rủi ro công nghệ & chính sách</h3>
+        <ul>
+          <li>Sàn giao dịch bị hack, mất tài sản.</li>
+          <li>Không có bảo hiểm giống hệ thống ngân hàng.</li>
+          <li>Rủi ro thay đổi chính sách và vấn đề rửa tiền.</li>
+        </ul>
+
+        <p class="small">Mỗi sinh viên tài chính cần học cách phân tích, đánh giá rủi ro và đầu tư có trách nhiệm.</p>
       </section>
 
-      <section id="trienvong">
-        <h1>Triển vọng tương lai (2025–2030)</h1>
-        <div class="meta">Kịch bản phát triển</div>
-        <p>Giai đoạn 2025–2030 được xem là quyết định cho tương lai tài sản mã hóa ở Việt Nam. Nếu thí điểm thành công, ba mục tiêu lớn có thể đạt được:</p>
-        <ol class="list">
-          <li>Xây dựng sàn giao dịch tài sản mã hóa hợp pháp trong nước.</li>
-          <li>Hoàn thiện hành lang pháp lý minh bạch.</li>
-          <li>Trở thành trung tâm tài sản số hàng đầu khu vực Đông Nam Á.</li>
-        </ol>
+      <!-- TRIỂN VỌNG -->
+      <section id="trienvong" class="page card" role="region" aria-label="Triển vọng tương lai">
+        <h1>Triển vọng tương lai</h1>
+        <p>Giai đoạn 2025 – 2030 được xác định là thời điểm quyết định đối với tương lai của tài sản mã hóa tại Việt Nam. Nếu chương trình thí điểm thành công, Việt Nam sẽ hướng tới ba mục tiêu lớn: xây dựng sàn giao dịch tài sản mã hóa hợp pháp trong nước, hoàn thiện hành lang pháp lý minh bạch, và trở thành trung tâm tài sản số hàng đầu Đông Nam Á.</p>
 
         <h2>Yếu tố hỗ trợ</h2>
-        <ul class="list">
-          <li>Sự tham gia tích cực của nhà đầu tư cá nhân và tinh thần đổi mới của nền kinh tế.</li>
-          <li>Phát triển quỹ đầu tư tài sản số đặt trụ sở tại Việt Nam.</li>
-          <li>Token hóa tài sản thực và tích hợp hạ tầng thanh toán với ngân hàng trong nước.</li>
+        <ul>
+          <li>Thị trường có tiềm năng lớn với sự tham gia tích cực của nhà đầu tư cá nhân.</li>
+          <li>Cơ hội phát triển các quỹ đầu tư tài sản số đặt trụ sở tại Việt Nam.</li>
+          <li>Phát triển hạ tầng và token hóa tài sản thực như hóa đơn thương mại và tín chỉ carbon.</li>
         </ul>
 
-        <p class="site-footer">Việt Nam đang đặt nền móng cho một nền kinh tế số toàn diện — nơi tài sản mã hóa là một phần của hệ sinh thái tài chính rộng lớn hơn.</p>
+        <p>Song song với đó, sự phát triển này sẽ dẫn đến việc tích hợp tài sản số vào hệ thống tài chính truyền thống, với khả năng hình thành các mô hình như "ngân hàng tài sản số" cung cấp dịch vụ lưu ký, thanh toán và cho vay đối với tài sản số.</p>
+
+        <p class="small">Kết luận: Việt Nam đang đặt nền móng cho một nền kinh tế số toàn diện vượt ra ngoài phạm vi giao dịch tiền mã hóa.</p>
       </section>
 
-      <div class="site-footer" aria-hidden="false">&copy; 2025 thitruongtaisanmahoat — Thiết kế: đơn giản, dễ đọc. Màu chủ đạo: #2D8CDB. Phông chữ: Georgia.</div>
+    </main>
 
-    </article>
-  </main>
+    <footer>
+      &copy; 2025 Thị trường tài sản mã hoá — Tất cả quyền được bảo lưu.
+    </footer>
+  </div>
 
   <script>
-    // Navigation: show/hide sections and set active link
+    // Simple SPA navigation
     const links = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
+    const pages = document.querySelectorAll('.page');
 
-    function showSection(id){
-      sections.forEach(s => s.classList.toggle('active', s.id === id));
-      links.forEach(l => l.classList.toggle('active', l.dataset.target === id));
-      // update url hash without jumping
-      history.replaceState(null, '', '#' + id);
+    function showPage(id){
+      pages.forEach(p=>p.classList.toggle('active', p.id===id));
+      links.forEach(a=>a.classList.toggle('active', a.dataset.target===id));
+      // update hash without jumping
+      history.replaceState(null, '', '#'+id);
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection(link.dataset.target);
-      });
-    });
+    links.forEach(a=>a.addEventListener('click', e=>{
+      e.preventDefault();
+      const target = a.dataset.target;
+      showPage(target);
+    }));
 
-    // On load: if hash present, show it
-    const initHash = location.hash.replace('#','') || 'home';
-    if(document.getElementById(initHash)) showSection(initHash);
-
-    // Keyboard navigation (left/right)
-    document.addEventListener('keydown', (e) => {
-      const order = ['home','thuctrang','phaply','cohoithachthuc','trienvong'];
-      const current = order.findIndex(o => document.getElementById(o).classList.contains('active'));
-      if(e.key === 'ArrowRight') showSection(order[(current+1)%order.length]);
-      if(e.key === 'ArrowLeft') showSection(order[(current-1+order.length)%order.length]);
-    });
+    // On load, check hash
+    const initial = (location.hash || '#home').replace('#','');
+    if(document.getElementById(initial)) showPage(initial);
   </script>
 </body>
 </html>
+
