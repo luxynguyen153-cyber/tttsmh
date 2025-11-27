@@ -1,235 +1,427 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thị trường tài sản mã hoá</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --primary:#2D8CDB;
-      --bg:#ffffff;
-      --muted:#6b7280;
-      --maxw:1000px;
-      --radius:12px;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.6}
-    .container{max-width:var(--maxw);margin:28px auto;padding:0 16px}
-
-    /* Header */
-    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{width:56px;height:56px;object-fit:cover;border-radius:8px}
-    .site-title{font-weight:700;color:var(--primary);font-size:18px}
-    nav{display:flex;gap:8px}
-    .nav-link{background:transparent;border-radius:8px;padding:8px 12px;text-decoration:none;color:#0f172a;font-weight:600}
-    .nav-link:hover{background:rgba(45,140,219,0.08)}
-    .nav-link.active{background:var(--primary);color:#fff}
-
-    /* Card */
-    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);padding:22px;margin-top:18px}
-    h1,h2{margin:0 0 12px 0}
-    h1{font-size:22px;color:var(--primary)}
-    h2{font-size:18px}
-    p{margin:0 0 12px}
-    ul{margin:0 0 12px 20px}
-
-    /* Footer */
-    footer{margin:28px 0;padding:16px 0;text-align:center;color:var(--muted);font-size:14px}
-
-    /* Responsive */
-    @media (max-width:720px){
-      .brand img{width:44px;height:44px}
-      .site-title{font-size:16px}
-      nav{gap:4px}
-      .nav-link{padding:8px}
-    }
-
-    /* Simple page transitions */
-    .page{display:none}
-    .page.active{display:block}
-
-    /* Small helper */
-    .small{font-size:14px;color:var(--muted)}
-    .lead{font-weight:500;color:#111827}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thị Trường Tài Sản Mã Hoá</title>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Framework để style nhanh và đẹp) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D8CDB',
+                        secondary: '#1A5F9A',
+                        light: '#F3F8FC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hiệu ứng chuyển cảnh mượt mà */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2D8CDB;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <img src="https://url-shortener.me/8ZL4" alt="Logo">
-        <div>
-          <div class="site-title">Thị trường tài sản mã hoá</div>
-          <div class="small">Thông tin — Phân tích — Triển vọng</div>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <!-- Logo & Brand Name -->
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 flex items-center justify-center overflow-hidden">
+                    <img src="https://scontent.fdad7-2.fna.fbcdn.net/v/t39.30808-6/589407367_831938569692195_85281407409152858_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=pkm9O5i-O6EQ7kNvwE0HiON&_nc_oc=AdnCsiN7MFzGwSpYzH1SDem-PObKcPInd9KqLUKJ8n_-0cLZyizmP858MVmwsr3FKYU&_nc_zt=23&_nc_ht=scontent.fdad7-2.fna&_nc_gid=VoTsgVHgwNHtorbuVaKsPQ&oh=00_AfgHbNAnIPU2JDluFJ_nCZPHFdn8u0pEiU2RAvufmkPhFQ&oe=692DB3F9" 
+                         alt="Logo" 
+                         class="object-contain w-full h-full"
+                         onerror="this.onerror=null; this.parentNode.innerHTML='<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#2D8CDB\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\' class=\'w-10 h-10\'><path d=\'M20.42 4.58a1.5 1.5 0 0 0-2.12 0l-.88.88a10 10 0 1 0 .88 2.12l.88-.88a1.5 1.5 0 0 0 0-2.12z\'/><path d=\'M8.5 11.5 11 14l4-4\'/></svg>'">
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold text-primary uppercase tracking-wide">Thị trường tài sản mã hoá</h1>
+            </div>
+
+            <!-- Mobile Menu Button (Optional structure, simplified for this demo) -->
+            <div class="md:hidden">
+                <button onclick="toggleMobileMenu()" class="text-primary focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
         </div>
-      </div>
-      <nav aria-label="Main navigation">
-        <a class="nav-link active" href="#home" data-target="home">Trang chủ</a>
-        <a class="nav-link" href="#thuctrang" data-target="thuctrang">Thực trạng</a>
-        <a class="nav-link" href="#phaply" data-target="phaply">Bước tiến pháp lý</a>
-        <a class="nav-link" href="#cohoi" data-target="cohoi">Cơ hội & Thách thức</a>
-        <a class="nav-link" href="#trienvong" data-target="trienvong">Triển vọng tương lai</a>
-      </nav>
+
+        <!-- NAVIGATION -->
+        <nav class="bg-primary text-white">
+            <div class="container mx-auto px-4">
+                <ul id="main-menu" class="hidden md:flex flex-col md:flex-row md:justify-center md:space-x-1">
+                    <li><button onclick="showPage('home')" class="nav-btn w-full md:w-auto px-6 py-3 hover:bg-white hover:text-primary font-medium transition-colors border-b-2 border-transparent focus:outline-none" data-target="home">Trang chủ</button></li>
+                    <li><button onclick="showPage('status')" class="nav-btn w-full md:w-auto px-6 py-3 hover:bg-white hover:text-primary font-medium transition-colors border-b-2 border-transparent focus:outline-none" data-target="status">Thực trạng</button></li>
+                    <li><button onclick="showPage('legal')" class="nav-btn w-full md:w-auto px-6 py-3 hover:bg-white hover:text-primary font-medium transition-colors border-b-2 border-transparent focus:outline-none" data-target="legal">Bước tiến pháp lý</button></li>
+                    <li><button onclick="showPage('opps')" class="nav-btn w-full md:w-auto px-6 py-3 hover:bg-white hover:text-primary font-medium transition-colors border-b-2 border-transparent focus:outline-none" data-target="opps">Cơ hội & Thách thức</button></li>
+                    <li><button onclick="showPage('future')" class="nav-btn w-full md:w-auto px-6 py-3 hover:bg-white hover:text-primary font-medium transition-colors border-b-2 border-transparent focus:outline-none" data-target="future">Triển vọng</button></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
-    <main>
-      <!-- HOME -->
-      <section id="home" class="page active card" role="region" aria-label="Trang chủ">
-<div style="width:100%;height:315px;margin-bottom:18px;border-radius:12px;overflow:hidden;">
-          <iframe width="100%" height="315" src="https://www.youtube.com/embed/evn_dD074mY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-5xl">
 
-        <h1>Thị trường tài sản mã hóa tại Việt Nam</h1>
-        <p class="lead">Nếu thế kỷ 20 là thời kỳ vàng son của tiền giấy và ngân hàng truyền thống, thì thế kỷ 21 chính là kỷ nguyên của tài chính số – nơi mà giá trị không còn nằm trong những tờ tiền vật lý, mà được thể hiện qua các dòng mã hóa, các token và blockchain.</p>
-        <p>Là những sinh viên đang bước vào thế giới tài chính, chúng ta cần hiểu rõ: tài sản mã hóa không chỉ là công nghệ, mà còn là tương lai của nền kinh tế toàn cầu – và Việt Nam đang dần bước vào hành trình đó.</p>
+        <!-- 1. TRANG CHỦ -->
+        <section id="home" class="tab-content active">
+            <!-- Video giới thiệu -->
+            <div class="flex justify-center mb-8">
+                <iframe class="w-full max-w-3xl aspect-video rounded-xl shadow-lg border-4 border-white" 
+                        src="https://www.youtube.com/embed/evn_dD074mY?si=qHAuntw3m5MRF6Ac" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                </iframe>
+            </div>
 
-        <h2>Khái niệm</h2>
-        <p>Tài sản mã hóa, hay còn gọi là <em>Digital Assets</em>, là những tài sản có giá trị được biểu diễn bằng dữ liệu kỹ thuật số và lưu trữ trên công nghệ blockchain.</p>
-        <p>Nếu tiền giấy được ngân hàng trung ương phát hành, thì tài sản mã hóa được “phát hành” bởi công nghệ và được xác thực bởi cộng đồng mạng lưới blockchain.</p>
+            <div class="bg-gradient-to-r from-primary to-blue-400 rounded-2xl p-8 text-white mb-8 shadow-lg">
+                <h2 class="text-3xl font-bold mb-4">Giới thiệu về thị trường tài sản mã hoá</h2>
+                <p class="text-lg opacity-90">"Thị trường tài sản mã hóa tại Việt Nam."</p>
+                <p class="mt-4">Nếu thế kỷ 20 là thời kỳ vàng son của tiền giấy và ngân hàng truyền thống, thì thế kỷ 21 chính là kỷ nguyên của tài chính số – nơi giá trị được thể hiện qua các dòng mã hóa, token và blockchain.</p>
+            </div>
 
-        <h2>Các dạng phổ biến</h2>
-        <ul>
-          <li>Tiền mã hóa như Bitcoin, Ethereum.</li>
-          <li>Token hóa tài sản thực như bất động sản hoặc trái phiếu.</li>
-          <li>NFT – đại diện cho tài sản kỹ thuật số độc nhất.</li>
-          <li>Stablecoin – được gắn với giá trị ổn định như USD hoặc vàng.</li>
-        </ul>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-xl font-bold text-primary mb-3">Khái niệm cốt lõi</h3>
+                    <p class="mb-2"><strong>Tài sản mã hóa (Digital Assets):</strong> Tài sản có giá trị biểu diễn bằng dữ liệu kỹ thuật số, lưu trữ trên blockchain.</p>
+                    <p class="mb-2">Khác với tiền giấy do Ngân hàng trung ương phát hành, tài sản mã hóa được "phát hành" bởi công nghệ và xác thực bởi cộng đồng mạng lưới.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                    <h3 class="text-xl font-bold text-primary mb-3">Các dạng phổ biến</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li><strong>Tiền mã hóa:</strong> Bitcoin, Ethereum.</li>
+                        <li><strong>Token hóa tài sản thực:</strong> Bất động sản, trái phiếu.</li>
+                        <li><strong>NFT:</strong> Đại diện cho tài sản kỹ thuật số độc nhất.</li>
+                        <li><strong>Stablecoin:</strong> Gắn với giá trị ổn định (USD, vàng).</li>
+                    </ul>
+                </div>
+            </div>
 
-        <h2>Ví dụ</h2>
-        <ul>
-          <li><strong>Bitcoin:</strong> Tiền mã hóa đầu tiên và phổ biến nhất.</li>
-          <li><strong>Ethereum:</strong> Một nền tảng blockchain tạo ra nhiều loại tài sản mã hóa khác nhau.</li>
-          <li><strong>NFT (Non-Fungible Token):</strong> Token đại diện cho quyền sở hữu một tài sản số hoặc vật lý duy nhất.</li>
-        </ul>
+            <div class="mt-8 bg-light p-6 rounded-xl">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Ví dụ điển hình</h3>
+                <div class="grid sm:grid-cols-3 gap-4 text-center">
+                    <div class="p-4 bg-white rounded shadow">
+                        <div class="font-bold text-orange-500 text-lg">Bitcoin</div>
+                        <div class="text-sm text-gray-500">Tiền mã hóa đầu tiên và phổ biến nhất.</div>
+                    </div>
+                    <div class="p-4 bg-white rounded shadow">
+                        <div class="font-bold text-blue-600 text-lg">Ethereum</div>
+                        <div class="text-sm text-gray-500">Nền tảng blockchain đa dụng.</div>
+                    </div>
+                    <div class="p-4 bg-white rounded shadow">
+                        <div class="font-bold text-purple-600 text-lg">NFT</div>
+                        <div class="text-sm text-gray-500">Token đại diện sở hữu duy nhất.</div>
+                    </div>
+                </div>
+                <p class="mt-4 text-center text-gray-600 italic">Tài sản mã hóa mang lại sự minh bạch, tốc độ và khả năng giao dịch toàn cầu.</p>
+            </div>
+        </section>
 
-        <p>Tài sản mã hóa mang lại sự minh bạch, tốc độ, và khả năng giao dịch toàn cầu – những điều mà hệ thống tài chính truyền thống đang cố gắng đạt tới.</p>
-      </section>
+        <!-- 2. THỰC TRẠNG -->
+        <section id="status" class="tab-content">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-primary w-fit">Thực trạng tại Việt Nam</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <div class="col-span-1 bg-blue-50 border-l-4 border-primary p-6 rounded-r-lg">
+                    <h3 class="text-4xl font-bold text-primary mb-2">17-20 Triệu</h3>
+                    <p class="font-semibold">Người dùng ước tính</p>
+                    <p class="text-sm text-gray-600 mt-2">Chiếm ~17% dân số, nằm trong top 5 thế giới (Chainalysis/Statista).</p>
+                </div>
+                <div class="col-span-2 bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                    <h3 class="text-xl font-bold mb-3">Sự quan tâm của Chính phủ</h3>
+                    <p>Ngày <strong>9/9/2025</strong>, Chính phủ ban hành <strong>Nghị quyết 05/2025/NQ-CP</strong> cho phép thí điểm thị trường tài sản mã hóa trong 5 năm.</p>
+                    <p class="mt-2 text-gray-600">Trước thời điểm này, do thiếu khung pháp lý, nhiều vụ lừa đảo và dòng vốn chảy máu ra nước ngoài không kiểm soát được.</p>
+                </div>
+            </div>
 
-      <!-- THỰC TRẠNG -->
-      <section id="thuctrang" class="page card" role="region" aria-label="Thực trạng tại Việt Nam">
-        <h1>Thực trạng tại Việt Nam</h1>
-        <p>Theo các báo cáo quốc tế như Chainalysis hay Statista, Việt Nam thường xuyên nằm trong top 5 quốc gia có tỷ lệ người sử dụng crypto cao nhất thế giới, ước tính có khoảng 17-20 triệu người dùng, tương đương hơn 17% dân số – rất cao so với mặt bằng thế giới.</p>
-        <p>Điều này cho thấy sự tiếp cận nhanh chóng và sâu rộng của người Việt đối với tài sản số, đặc biệt là trong giới trẻ và giới công nghệ.</p>
+            <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                <h3 class="text-xl font-bold text-red-600 flex items-center mb-3">
+                    <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    Cảnh báo rủi ro & Lừa đảo
+                </h3>
+                <p class="mb-4"><strong>Ví dụ điển hình:</strong> Vụ việc liên quan đến dự án "đồng tiền số Antex" của Shark Bình. Nhờ niềm tin vào tên tuổi "cá mập công nghệ", nhiều người đã dốc vốn đầu tư với giấc mơ làm giàu, nhưng kết quả để lại nhiều tiếc nuối khi dự án không thành công như mong đợi.</p>
+                <p class="text-sm text-red-800 italic">Bài học: Niềm tin cá nhân không đảm bảo cho sự thành công của dự án công nghệ rủi ro cao.</p>
+            </div>
 
-        <h2>Sự kiện pháp lý gần đây</h2>
-        <p>Ngày 9/9/2025, Chính phủ ban hành Nghị quyết 05/2025/NQ-CP cho phép thí điểm thị trường tài sản mã hóa trong 5 năm. (xem phần Bước tiến pháp lý)</p>
+            <div class="bg-white p-6 rounded-xl shadow-sm">
+                <h3 class="text-lg font-bold mb-3">Giao dịch trên sàn Quốc tế</h3>
+                <p class="mb-2">Phần lớn diễn ra trên: <strong>Binance, OKX, Bybit</strong>.</p>
+                <div class="flex gap-4 my-3">
+                    <span class="px-3 py-1 bg-gray-100 rounded text-sm font-semibold">Ưu điểm: Thanh khoản cao, công nghệ tốt</span>
+                    <span class="px-3 py-1 bg-red-100 text-red-700 rounded text-sm font-semibold">Rủi ro: Thiếu bảo vệ pháp lý, dễ bị lừa đảo</span>
+                </div>
+                <p>Vấn đề cốt lõi: Việt Nam chưa có khung pháp lý rõ ràng (trước Nghị quyết 05/2025).</p>
+            </div>
+        </section>
 
-        <h2>Rủi ro & Lừa đảo</h2>
-        <p>Vì mãi đến năm 2025 mới có nghị quyết thí điểm, nên có rất nhiều vụ lừa đảo, mô hình đầu tư trá hình đã xảy ra trong nước, dòng vốn đầu tư bằng crypto ra nước ngoài gần như không kiểm soát được.</p>
-        <p>Ví dụ: vụ lừa đảo chiếm đoạt tài sản của ông Nguyễn Hòa Bình (Shark Bình) với dự án “đồng tiền số Antex” đã khiến nhiều người mất tiền và chịu tổn thất nặng nề.</p>
+        <!-- 3. BƯỚC TIẾN PHÁP LÝ -->
+        <section id="legal" class="tab-content">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-primary w-fit">Bước tiến pháp lý</h2>
+            
+            <div class="bg-blue-600 text-white p-6 rounded-xl shadow-lg mb-8 text-center">
+                <p class="uppercase tracking-widest text-sm opacity-80 mb-2">Sự kiện lịch sử</p>
+                <h3 class="text-3xl font-bold">Nghị quyết 05/2025/NQ-CP</h3>
+                <p class="mt-2 text-xl">Ngày 09/09/2025</p>
+                <p class="mt-4 text-blue-100">Lần đầu tiên Nhà nước công nhận và cho phép thử nghiệm hoạt động phát hành, giao dịch tài sản mã hóa.</p>
+            </div>
 
-        <h2>Sàn giao dịch</h2>
-        <p>Phần lớn hoạt động giao dịch diễn ra trên các sàn quốc tế như Binance, OKX hay Bybit, do Việt Nam chưa có sàn giao dịch hợp pháp trong nước.</p>
-        <p>Những sàn này cho phép giao dịch 24/7, tiếp cận thị trường toàn cầu, nhưng cũng đặt người dùng vào rủi ro khi không được pháp luật Việt Nam bảo vệ đầy đủ.</p>
+            <div class="overflow-x-auto bg-white rounded-lg shadow border border-gray-200">
+                <table class="min-w-full text-left">
+                    <thead class="bg-gray-50 border-b border-gray-200">
+                        <tr>
+                            <th class="px-6 py-4 font-bold text-gray-700">Nội dung quy định</th>
+                            <th class="px-6 py-4 font-bold text-gray-700">Chi tiết bổ sung & Ý nghĩa</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-primary">Giao dịch bằng VNĐ</td>
+                            <td class="px-6 py-4 text-gray-600">Kiểm soát dòng vốn, bảo vệ ổn định tài chính tiền tệ, chống rửa tiền.</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-primary">Vốn điều lệ tối thiểu 10.000 tỷ đồng</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>Doanh nghiệp Việt Nam.</li>
+                                    <li>Tối thiểu 65% vốn tổ chức VN.</li>
+                                    <li>Hạ tầng công nghệ chuẩn an toàn cấp độ 4.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 font-semibold text-primary">Tài sản cơ sở là tài sản thật</td>
+                            <td class="px-6 py-4 text-gray-600">
+                                Chỉ phát hành token gắn với tài sản thật. Không bao gồm chứng khoán hay tiền pháp định số hoá.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-right text-sm text-gray-500 mt-2">* Nguồn: Sở Tư Pháp Tuyên Quang, Chính phủ Việt Nam, 2025.</p>
+        </section>
 
-        <p class="small">Tổng kết: Việt Nam đang chứng kiến mức độ phổ biến cao với nhiều rủi ro pháp lý và an toàn — điều này đặt ra nhu cầu cấp bách về khung pháp lý và giám sát.</p>
-      </section>
+        <!-- 4. CƠ HỘI & THÁCH THỨC -->
+        <section id="opps" class="tab-content">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-primary w-fit">Cơ hội & Thách thức</h2>
 
-      <!-- BƯỚC TIẾN PHÁP LÝ -->
-      <section id="phaply" class="page card" role="region" aria-label="Bước tiến pháp lý">
-        <h1>Bước tiến pháp lý</h1>
-        <p>Ngày 9/9/2025, Chính phủ Việt Nam chính thức ban hành <strong>Nghị quyết 05/2025/NQ-CP</strong> về thí điểm thị trường tài sản mã hóa trong 5 năm. Đây được xem là bước ngoặt lịch sử – lần đầu tiên Nhà nước công nhận và cho phép thử nghiệm hoạt động phát hành, giao dịch tài sản mã hóa.</p>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Cơ hội -->
+                <div class="space-y-6">
+                    <div class="bg-green-50 p-6 rounded-xl border border-green-200 h-full">
+                        <h3 class="text-2xl font-bold text-green-700 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                            Cơ hội phát triển
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <span class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm">1</span>
+                                <div>
+                                    <strong>Hành lang pháp lý rõ ràng:</strong> Giảm nguy cơ lừa đảo, tăng niềm tin. Người dân có thể đầu tư qua các sàn được cấp phép.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm">2</span>
+                                <div>
+                                    <strong>Thu hút vốn quốc tế:</strong> Các quỹ từ Singapore, Hàn Quốc, Mỹ rót vốn vào startup blockchain Việt (Kyber Network, Ninety Eight...).
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm">3</span>
+                                <div>
+                                    <strong>Sản phẩm tài chính mới:</strong> Token hóa bất động sản, cổ phần doanh nghiệp giúp gọi vốn nhanh và minh bạch.
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-sm">4</span>
+                                <div>
+                                    <strong>Chuyển đổi số ngân hàng:</strong> Ứng dụng blockchain xác thực giao dịch, giảm chi phí, tăng minh bạch.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-        <h2>Nội dung chính của Nghị quyết 05/2025/NQ-CP</h2>
-        <ul>
-          <li>Giao dịch phải thực hiện bằng Đồng Việt Nam (VNĐ) nhằm kiểm soát dòng vốn và bảo vệ ổn định tài chính, tiền tệ quốc gia.</li>
-          <li>Doanh nghiệp tham gia cần có vốn điều lệ tối thiểu 10.000 tỷ đồng và phải là doanh nghiệp Việt Nam; tối thiểu 65% vốn thuộc tổ chức Việt Nam.</li>
-          <li>Hạ tầng công nghệ phải đạt tiêu chuẩn an toàn cấp độ 4.</li>
-          <li>Chỉ được phép phát hành token gắn với tài sản thật, không phải tiền tệ hay chứng khoán.</li>
-        </ul>
+                <!-- Thách thức -->
+                <div class="space-y-6">
+                    <div class="bg-orange-50 p-6 rounded-xl border border-orange-200 h-full">
+                        <h3 class="text-2xl font-bold text-orange-700 mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Thách thức & Rủi ro
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="bg-white p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gray-800">1. Pháp lý chưa hoàn thiện</h4>
+                                <p class="text-sm text-gray-600">Đến 2026 luật mới chính thức hiệu lực. Hiện tại crypto chưa là phương tiện thanh toán hợp pháp. Tranh chấp khó giải quyết.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gray-800">2. Rủi ro nhà đầu tư</h4>
+                                <p class="text-sm text-gray-600">Biến động giá 20-50% trong vài ngày. Dự án rác, đa cấp, thiếu kiến thức dễ dẫn đến mất trắng.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gray-800">3. Công nghệ & Bảo mật</h4>
+                                <p class="text-sm text-gray-600">Sàn bị hack, mất ví không có bảo hiểm bồi thường. Người dùng mất private key là mất tiền.</p>
+                            </div>
+                            <div class="bg-white p-3 rounded shadow-sm">
+                                <h4 class="font-bold text-gray-800">4. Vĩ mô & Chính sách</h4>
+                                <p class="text-sm text-gray-600">Rủi ro rửa tiền. Nếu chính sách thay đổi đột ngột, thị trường có thể sụp đổ.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8 bg-primary text-white p-4 rounded-lg text-center font-medium">
+                "Mỗi sinh viên tài chính cần học cách phân tích, đánh giá rủi ro và đầu tư có trách nhiệm — kiến thức là tấm khiên vững chắc nhất."
+            </div>
+        </section>
 
-        <p class="small">(Nguồn: Tổng hợp thông tin chính thức và bản tin chuyên ngành, 2025)</p>
-      </section>
+        <!-- 5. TRIỂN VỌNG TƯƠNG LAI -->
+        <section id="future" class="tab-content">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 pb-2 border-b border-primary w-fit">Triển vọng tương lai (2025 - 2030)</h2>
+            
+            <div class="bg-white p-8 rounded-xl shadow-lg border-t-4 border-primary text-center mb-10">
+                <h3 class="text-2xl font-bold text-primary mb-4">Mục tiêu lớn</h3>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto">Xây dựng sàn giao dịch hợp pháp trong nước — Hoàn thiện hành lang pháp lý minh bạch — Trở thành trung tâm tài sản số hàng đầu Đông Nam Á.</p>
+            </div>
 
-      <!-- CƠ HỘI & THÁCH THỨC -->
-      <section id="cohoi" class="page card" role="region" aria-label="Cơ hội và thách thức">
-        <h1>Cơ hội phát triển & Thách thức</h1>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Thị trường tiềm năng</h4>
+                    <p class="text-gray-600 text-sm">Việt Nam là nền kinh tế tăng trưởng nhanh. Việc cấp phép cho sàn giao dịch sẽ thu hút dữ liệu và thanh khoản từ nước ngoài về kênh quản lý trong nước.</p>
+                </div>
 
-        <h2>Cơ hội phát triển</h2>
-        <ul>
-          <li>Hợp pháp hóa thí điểm mở ra hành lang pháp lý rõ ràng, giúp đầu tư an toàn và minh bạch.</li>
-          <li>Thu hút nguồn vốn đầu tư quốc tế cho fintech, blockchain và khởi nghiệp.</li>
-          <li>Thúc đẩy ra đời các sản phẩm tài chính mới như token hóa bất động sản hay cổ phần.</li>
-          <li>Thúc đẩy chuyển đổi số trong ngân hàng, chứng khoán và doanh nghiệp.</li>
-        </ul>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Quỹ đầu tư tại Việt Nam</h4>
+                    <p class="text-gray-600 text-sm">Mở đường cho quỹ Bitcoin, quỹ tài sản số phục vụ các định chế như bảo hiểm, quỹ hưu trí ngay tại Việt Nam.</p>
+                </div>
 
-        <h2>Thách thức & Rủi ro</h2>
-        <h3>Thách thức pháp lý</h3>
-        <ul>
-          <li>Chưa có luật điều chỉnh đầy đủ (dự kiến Luật có hiệu lực năm 2026).</li>
-          <li>Crypto chưa được công nhận là phương tiện thanh toán hợp pháp.</li>
-          <li>Tranh chấp khó giải quyết do thiếu cơ chế pháp lý rõ ràng.</li>
-        </ul>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Hạ tầng Token hóa</h4>
+                    <p class="text-gray-600 text-sm">Token hóa tài sản thực (hóa đơn, tín chỉ carbon) trên Blockchain bảo trợ bởi Nhà nước. Chia nhỏ sở hữu, giao dịch minh bạch.</p>
+                </div>
+            </div>
 
-        <h3>Rủi ro cho nhà đầu tư</h3>
-        <ul>
-          <li>Biến động giá lớn, khả năng mất trắng.</li>
-          <li>Lừa đảo phổ biến: dự án đa cấp, token rác, sàn ma.</li>
-          <li>Thiếu kiến thức và thông tin dẫn đến đầu tư theo đám đông.</li>
-        </ul>
-
-        <h3>Rủi ro công nghệ & chính sách</h3>
-        <ul>
-          <li>Sàn giao dịch bị hack, mất tài sản.</li>
-          <li>Không có bảo hiểm giống hệ thống ngân hàng.</li>
-          <li>Rủi ro thay đổi chính sách và vấn đề rửa tiền.</li>
-        </ul>
-
-        <p class="small">Mỗi sinh viên tài chính cần học cách phân tích, đánh giá rủi ro và đầu tư có trách nhiệm.</p>
-      </section>
-
-      <!-- TRIỂN VỌNG -->
-      <section id="trienvong" class="page card" role="region" aria-label="Triển vọng tương lai">
-        <h1>Triển vọng tương lai</h1>
-        <p>Giai đoạn 2025 – 2030 được xác định là thời điểm quyết định đối với tương lai của tài sản mã hóa tại Việt Nam. Nếu chương trình thí điểm thành công, Việt Nam sẽ hướng tới ba mục tiêu lớn: xây dựng sàn giao dịch tài sản mã hóa hợp pháp trong nước, hoàn thiện hành lang pháp lý minh bạch, và trở thành trung tâm tài sản số hàng đầu Đông Nam Á.</p>
-
-        <h2>Yếu tố hỗ trợ</h2>
-        <ul>
-          <li>Thị trường có tiềm năng lớn với sự tham gia tích cực của nhà đầu tư cá nhân.</li>
-          <li>Cơ hội phát triển các quỹ đầu tư tài sản số đặt trụ sở tại Việt Nam.</li>
-          <li>Phát triển hạ tầng và token hóa tài sản thực như hóa đơn thương mại và tín chỉ carbon.</li>
-        </ul>
-
-        <p>Song song với đó, sự phát triển này sẽ dẫn đến việc tích hợp tài sản số vào hệ thống tài chính truyền thống, với khả năng hình thành các mô hình như "ngân hàng tài sản số" cung cấp dịch vụ lưu ký, thanh toán và cho vay đối với tài sản số.</p>
-
-        <p class="small">Kết luận: Việt Nam đang đặt nền móng cho một nền kinh tế số toàn diện vượt ra ngoài phạm vi giao dịch tiền mã hóa.</p>
-      </section>
+            <div class="mt-8 bg-gray-100 p-6 rounded-xl">
+                <h4 class="font-bold text-xl text-gray-800 mb-2">Mô hình "Ngân hàng tài sản số"</h4>
+                <p class="text-gray-700">Tương lai sẽ tích hợp tài sản số vào hệ thống tài chính truyền thống. Các sàn giao dịch kết nối với ngân hàng để nạp/rút tiền. Ngân hàng có thể cung cấp dịch vụ lưu ký, thanh toán và cho vay đối với tài sản số.</p>
+                <div class="mt-4 font-bold text-primary text-center text-lg">
+                    Việt Nam đang đặt nền móng cho một nền kinh tế số toàn diện.
+                </div>
+            </div>
+        </section>
 
     </main>
 
-    <footer>
-      &copy; 2025 Thị trường tài sản mã hoá — Tất cả quyền được bảo lưu.
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="font-medium text-lg mb-2">Thị Trường Tài Sản Mã Hoá</p>
+            <p class="text-sm opacity-60">© 2025 Bản quyền thuộc về Nhóm phát triển.</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="#" class="hover:text-primary transition-colors">Trang chủ</a>
+                <span class="opacity-30">|</span>
+                <a href="#" class="hover:text-primary transition-colors">Pháp lý</a>
+                <span class="opacity-30">|</span>
+                <a href="#" class="hover:text-primary transition-colors">Liên hệ</a>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    // Simple SPA navigation
-    const links = document.querySelectorAll('.nav-link');
-    const pages = document.querySelectorAll('.page');
+    <!-- JAVASCRIPT ĐIỀU HƯỚNG -->
+    <script>
+        // Hàm chuyển trang
+        function showPage(pageId) {
+            // 1. Ẩn tất cả nội dung
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
 
-    function showPage(id){
-      pages.forEach(p=>p.classList.toggle('active', p.id===id));
-      links.forEach(a=>a.classList.toggle('active', a.dataset.target===id));
-      // update hash without jumping
-      history.replaceState(null, '', '#'+id);
-      window.scrollTo({top:0,behavior:'smooth'});
-    }
+            // 2. Hiển thị trang được chọn
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
 
-    links.forEach(a=>a.addEventListener('click', e=>{
-      e.preventDefault();
-      const target = a.dataset.target;
-      showPage(target);
-    }));
+            // 3. Cập nhật trạng thái menu (Active state)
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                if(btn.dataset.target === pageId) {
+                    // Style cho nút đang active
+                    btn.classList.add('bg-white', 'text-primary');
+                    btn.classList.remove('text-white');
+                } else {
+                    // Style cho nút bình thường
+                    btn.classList.remove('bg-white', 'text-primary');
+                    btn.classList.add('text-white');
+                }
+            });
 
-    // On load, check hash
-    const initial = (location.hash || '#home').replace('#','');
-    if(document.getElementById(initial)) showPage(initial);
-  </script>
+            // Cuộn lên đầu trang khi chuyển tab
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Đóng menu mobile nếu đang mở
+            const mobileMenu = document.getElementById('main-menu');
+            if (!mobileMenu.classList.contains('hidden') && window.innerWidth < 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Xử lý menu mobile
+        function toggleMobileMenu() {
+            const menu = document.getElementById('main-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Mặc định hiển thị trang chủ khi tải xong và set active cho nút Trang chủ
+        document.addEventListener('DOMContentLoaded', () => {
+            const homeBtn = document.querySelector('button[data-target="home"]');
+            if(homeBtn) {
+                homeBtn.classList.add('bg-white', 'text-primary');
+                homeBtn.classList.remove('text-white');
+            }
+        });
+    </script>
 </body>
 </html>
-
