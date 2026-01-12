@@ -1,3 +1,63 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thị trường tài sản mã hoá</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#2D8CDB;
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --maxw:1000px;
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#0f172a;line-height:1.6}
+    .container{max-width:var(--maxw);margin:28px auto;padding:0 16px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:56px;height:56px;object-fit:cover;border-radius:8px}
+    .site-title{font-weight:700;color:var(--primary);font-size:18px}
+    nav{display:flex;gap:8px}
+    .nav-link{background:transparent;border-radius:8px;padding:8px 12px;text-decoration:none;color:#0f172a;font-weight:600}
+    .nav-link:hover{background:rgba(45,140,219,0.08)}
+    .nav-link.active{background:var(--primary);color:#fff}
+
+    /* Card */
+    .card{background:#fff;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,42,0.06);padding:22px;margin-top:18px}
+    h1,h2{margin:0 0 12px 0}
+    h1{font-size:22px;color:var(--primary)}
+    h2{font-size:18px}
+    p{margin:0 0 12px}
+    ul{margin:0 0 12px 20px}
+
+    /* Footer */
+    footer{margin:28px 0;padding:16px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:720px){
+      .brand img{width:44px;height:44px}
+      .site-title{font-size:16px}
+      nav{gap:4px}
+      .nav-link{padding:8px}
+    }
+
+    /* Simple page transitions */
+    .page{display:none}
+    .page.active{display:block}
+
+    /* Small helper */
+    .small{font-size:14px;color:var(--muted)}
+    .lead{font-weight:500;color:#111827}
+  </style>
+</head>
 <body>
   <div class="container">
     <header>
@@ -172,3 +232,4 @@
   </script>
 </body>
 </html>
+
